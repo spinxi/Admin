@@ -1,0 +1,163 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block title %}DataTables{% endblock title %}
+{% block extra_css %}
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <!-- alertifyjs Css -->
+    <link href="{% static 'libs/alertifyjs/build/css/alertify.min.css'%}" rel="stylesheet" type="text/css" />
+
+    <!-- alertifyjs default themes  Css -->
+    <link href="{% static 'libs/alertifyjs/build/css/themes/default.min.css'%}" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" /> 
+{% endblock extra_css %}
+
+{% block content %}
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Drivers List</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                                            <li class="breadcrumb-item active">Drivers</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"><!-- Datatable -->
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row mb-2"><!-- Datatable heading search & export & add -->
+                                            <div class="col-sm-6">
+                                                <div class="search-box me-2 mb-2 d-inline-block">
+                                                    <div class="position-relative">
+                                                        <input type="text" id="custom-filter" class="form-control" placeholder="Search...">
+                                                        <i class="bx bx-search-alt search-icon"></i>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-->
+                                            <div class="col-sm-6">
+                                                <div class="text-sm-end">
+                                                    <a href="{% url 'drivers:drivers.add' %}"><button type="button" class="btn btn-success btn-rounded mb-2 me-2"><i class="mdi mdi-plus me-1"></i> Add New Order</button></a>
+                                                    <div class="btn-group ">
+                                                        <button type="button" class="btn btn-success dropdown-toggle btn-rounded mb-2 me-2" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-export-variant me-1"></i> Export Options <i class="mdi mdi-chevron-down"></i></button>
+                                                        <div class="dropdown-menu dropdownmenu-success" id="datatable_butt"></div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-->
+                                        </div><!-- End Datatable heading search & export & add -->
+                                        <!-- MODAL ASK -->
+                                        <div class="modal_ask_delete">
+                                            <!-- Static Backdrop Modal -->
+                                            <div class="modal fade" id="delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="staticBackdropLabel">Delete Driver</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to delete driver <span class="text-danger" id="object-name"></span></p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                                            <a id="delete-object-a" href="#" type="button" class="btn btn-primary">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <MODAL ASK> -->
+                                        <table id="datatable-buttons" class="table table-hover dt-responsive nowrap w-100">
+                                            <thead class="table-dark">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Driver Name</th>
+                                                <th>Phone</th>
+                                                
+                                                <th>Email</th>
+                                                <th>Date Created</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for driver in driver_list %}
+                                                <tr>
+                                                    <td>{{forloop.counter}}</td>
+                                                    <td>{{driver.full_name}}</td>
+                                                    <td>{{driver.phone_number}}</td>
+                                                    
+                                                    <td>{{driver.driver_user.email}}</td>
+                                                    <td>{{driver.date_created|date:"Y-m-d h:m:s"}}</td>
+                                                    <td>
+                                                        {% if driver.status == 1 %}  
+                                                        <span class="badge rounded-pill badge-soft-success font-size-12 fw-medium">Active</span>
+                                                        {% else %} 
+                                                        <span class="badge rounded-pill badge-soft-danger font-size-12 fw-medium">Inactive</span>
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex gap-3">
+                                                            <a href="{% url 'drivers:drivers.edit' driver.driver_user_id %}" class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
+                                                            <a href="{% url 'drivers:drivers.profile' driver.driver_user_id %}" class="text-danger"><i class="mdi mdi-eye-outline font-size-18"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {%endfor%}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end cardaa -->
+                            </div> <!-- end col -->
+                        </div> <!-- end row Datatable -->
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                {% block footer %}
+                {% include 'partials/footer.html' %}
+                {% endblock footer %}
+            </div>
+            <!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/dist/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<!-- <script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script> -->
+<!-- <script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script> -->
+<!-- alertifyjs js -->
+
+<script src="{% static 'libs/alertifyjs/build/alertify.min.js'%}" data-settings-url="{% url 'settings' %}"></script>
+<!-- notification init -->
+<!-- <script src="{% static 'js/pages/notification.init.js'%}"></script> -->
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>    
+{% endblock extra_js %}

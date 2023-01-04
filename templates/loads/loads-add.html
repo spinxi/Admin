@@ -1,0 +1,239 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Form Advanced Plugins{% endblock title %}
+
+{% block extra_css %}
+
+<!-- choices css -->
+<link href="{% static 'libs/choices.js/public/assets/styles/choices.min.css'%}" rel="stylesheet" type="text/css" />
+<!-- datepicker css -->
+<link rel="stylesheet" href="{% static 'libs/flatpickr/dist/flatpickr.min.css'%}">
+<!-- twitter-bootstrap-wizard css -->
+<link rel="stylesheet" href="{% static 'libs/twitter-bootstrap-wizard/prettify.css'%}">
+
+{% endblock extra_css %}
+
+{% block content %}
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <h4 class="mb-sm-0 font-size-18">Add Loads</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                                        <li class="breadcrumb-item"><a href="{% url 'loads:load.all' %}">Loads</a></li>
+                                        <li class="breadcrumb-item active">Add Loads</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <!-- Wizard -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div id="progrss-wizard" class="twitter-bs-wizard">
+                                                    <ul class="twitter-bs-wizard-nav nav nav-pills nav-justified">
+                                                        <li class="nav-item">
+                                                            <a href="#load-info" class="nav-link" data-toggle="tab">
+                                                                <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Basic Information">
+                                                                    <i class="bx bxs-file"></i>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a href="#load-pickup" class="nav-link" data-toggle="tab">
+                                                                <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Pickup & Delivery Information">
+                                                                    <i class="bx bx-book-bookmark"></i>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <!-- wizard-nav -->
+                                                    <div id="bar" class="progress animated-progess my-4">
+                                                        <div class="progress-bar bg-success" role="progressbar"></div>
+                                                    </div>
+                                                    <div class="tab-content twitter-bs-wizard-tab-content">
+                                                        <div class="tab-pane" id="load-info">
+                                                            {% crispy formset %}
+                                                            <!-- formset.empty_form.load_drivers|as_crispy_field -->
+                                                            
+                                                            <div class="text-center mb-4">
+                                                                <h5>Load Basic Information</h5>
+                                                                <p class="card-title-desc">Fill all information below</p>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.bill_to|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.rate|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.driver|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.truck|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.trailer|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.po_number|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_file_form.files|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.load_status|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.notes|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                                <li class="next">
+                                                                    <a href="javascript: void(0);" class="btn btn-primary">
+                                                                        Next <i class="bx bx-chevron-right ms-1"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="tab-pane" id="load-pickup">
+                                                            <div class="text-center mb-4">
+                                                                <h5>Load Pickup & Delivery Information</h5>
+                                                                <p class="card-title-desc">Fill all information below</p>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.pickup_location|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.pickup_date|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.pickup_time|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <hr class="my-5">
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.delivery_location|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.delivery_date|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.delivery_time|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                                <li class="previous">
+                                                                    <a href="javascript: void(0);" class="btn btn-primary">
+                                                                        <i class="bx bx-chevron-left me-1"></i> Previous
+                                                                    </a>
+                                                                </li>
+                                                                <li class="float-end">
+                                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end col -->
+                                        </div>
+                                        <!-- End Wizard -->
+                                    </form>
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            {% block footer %}
+            {% include 'partials/footer.html' %}
+            {% endblock footer %}
+        </div>
+        <!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- choices js -->
+<script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js'%}"></script>
+<!-- datepicker js -->
+<script src="{% static 'libs/flatpickr/dist/flatpickr.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+<!-- init js -->
+<script src="{% static 'js/pages/loads/add.js'%}"></script>
+<!-- twitter-bootstrap-wizard js -->
+<script src="/static/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="/static/libs/twitter-bootstrap-wizard/prettify.js"></script>
+<!-- form wizard init -->
+<script src="{% static 'js/pages/form-wizard.init.js'%}"></script>
+{% endblock extra_js %}

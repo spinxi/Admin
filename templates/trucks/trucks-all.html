@@ -1,0 +1,190 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block title %}DataTables{% endblock title %}
+
+{% block extra_css %}
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <!-- alertifyjs Css -->
+    <link href="{% static 'libs/alertifyjs/build/css/alertify.min.css'%}" rel="stylesheet" type="text/css" />
+
+    <!-- alertifyjs default themes  Css -->
+    <link href="{% static 'libs/alertifyjs/build/css/themes/default.min.css'%}" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" /> 
+{% endblock extra_css %}
+
+{% block content %}
+    
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Trucks List</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                                            <li class="breadcrumb-item active">Trucks</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row mb-2"><!-- Datatable heading search & export & add -->
+                                            <div class="col-sm-6">
+                                                <div class="search-box me-2 mb-2 d-inline-block">
+                                                    <div class="position-relative">
+                                                        <input type="text" id="custom-filter" class="form-control" placeholder="Search...">
+                                                        <i class="bx bx-search-alt search-icon"></i>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-->
+                                            <div class="col-sm-6">
+                                                <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+                                                    <!-- <div>
+                                                        <ul class="nav nav-pills">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link active" href="/apps/contacts/user_list" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="List" aria-label="List"><i class="bx bx-list-ul"></i></a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" href="/apps/contacts/user_grid" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Grid" aria-label="Grid"><i class="bx bx-grid-alt"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div> -->
+                                                    <div>
+                                                        <a href="{% url 'trailer:trailers.add' %}" class="btn btn-light"><i class="bx bx-plus me-1"></i> Add New</a>
+                                                    </div>
+                                                    
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="bx bx-dots-horizontal-rounded"></i>
+                                                        </a>
+                                                    
+                                                        <ul id="datatable_butt" class="dropdown-menu dropdown-menu-end dropdownmenu-success">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-->
+                                        </div>
+                                        </div><!-- End Datatable heading search & export & add -->
+                                        <table id="datatable-buttons" class="table table-hover nowrap w-100">
+                                            <thead class="table-dark">
+                                            <tr>
+                                                <th>Unit #</th>
+                                                <th>plate #</th>
+                                                <th>Year</th>
+                                                <th>State</th>
+                                                <th>Make</th>
+                                                <th>Registration exp date</th>
+                                                <th>Inspection Exp. Date</th>
+                                                <th>Physical Damage Exp. Date</th>
+                                                <th>Non-Trucking Exp. Date</th>
+                                                <th>Cargo Exp. Date</th>
+                                                <th>GPS</th>
+                                                <th>GPS #</th>
+                                                <th>Status</th>
+                                                <th>Rent</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for truck in truck_list %}
+                                                <tr>
+                                                    <td>{{truck.unit_number}}</td>
+                                                    <td>{{truck.plate_number}}</td>
+                                                    <td>{{truck.year_date}}</td>
+                                                    <td>{{truck.state}}</td>
+                                                    <td>{{truck.make}}</td>
+                                                    <td>{{truck.registration_expiration_date}}</td>
+                                                    <td>{{truck.inspection_expiration_date}}</td>
+                                                    <td>{{truck.physical_damage_expiration_date}}</td>
+                                                    <td>{{truck.non_trucking_expiration_date}}</td>
+                                                    <td>{{truck.cargo_expiration_date}}</td>
+                                                    <td>{{truck.gps}}</td>
+                                                    <td>{{truck.gps_serial_number}}</td>
+                                                    <td>{{truck.trailer_status}}</td>
+                                                    <td>{% if truck.rent %} Yes {% else %} No {% endif %}</td>
+                                                    <td>
+                                                        {% if truck.status == 1 %}  
+                                                        <span class="text-uppercase badge rounded-pill badge-soft-success fw-bold">active</span>
+                                                        {% else %} 
+                                                        <span class="text-uppercase badge rounded-pill badge-soft-danger fw-bold">inactive</span>
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bx bx-dots-horizontal-rounded"></i>
+                                                            </a>
+                                                        
+                                                            <ul class="dropdown-menu dropdown-menu-end dropdownmenu-success">
+                                                                <li><a class="dropdown-item" href="{% url 'trucks:trucks.edit' truck.id %}">Edit</a></li>
+                                                                <li><a class="dropdown-item" href="{% url 'trucks:trucks.edit' truck.id %}">Details</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {%endfor%}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end cardaa -->
+                            </div> <!-- end col -->
+                        </div> <!-- end row -->
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                {% block footer %}
+                {% include 'partials/footer.html' %}
+                {% endblock footer %}
+            </div>
+            <!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/dist/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script>
+    <!-- alertifyjs js -->
+    <script src="{% static 'libs/alertifyjs/build/alertify.min.js'%}" data-settings-url="{% url 'settings' %}"></script>
+    <!-- notification init -->
+    <script src="{% static 'js/pages/trucks/trucks-delete.js'%}"></script>
+    
+<!-- Responsive examples -->
+
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<!-- <script src="{% static 'libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js'%}"></script> -->
+
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/datatables.init.js'%}"></script>    
+{% endblock extra_js %}

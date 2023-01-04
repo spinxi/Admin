@@ -1,0 +1,1 @@
+flatpickr("#id_truck_plate_exp", { });
