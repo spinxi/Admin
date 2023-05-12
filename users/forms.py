@@ -6,6 +6,7 @@ class CustomUserForm(forms.ModelForm):
         model = CustomUser
         fields = [
             'email',
+<<<<<<< HEAD
         ]
 
 class CustomChangeForm(forms.ModelForm):
@@ -13,3 +14,6 @@ class CustomChangeForm(forms.ModelForm):
         model = CustomUser
         fields = '__all__'
 
+=======
+        ]
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d

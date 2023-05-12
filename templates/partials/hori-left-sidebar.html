@@ -6,6 +6,7 @@
 
             <div class="collapse navbar-collapse" id="topnav-menu-content">
                 <ul class="navbar-nav">
+<<<<<<< HEAD
                     {% if user.is_staff %}
                     <!-- {% url 'dashboard' %} -->
                     <li class="nav-item dropdown">
@@ -15,6 +16,16 @@
                     </li>
                     
                     <!-- <li class="nav-item dropdown">
+=======
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="{% url 'dashboard' %}" id="topnav-dashboard" role="button">
+                            <i class="fas fa-home"></i><span class='ms-2' data-key="t-dashboard">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                         <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-uielement" role="button">
                             <i data-feather="briefcase"></i>
                             <span data-key="t-elements">Elements</span> 
@@ -246,31 +257,52 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                     </li> -->
                     {% endif %}
                     {% if user.is_accountant  or user.is_staff  %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle arrow-none {% if request.resolver_match.view_name == 'loads:load.add' %} active {% endif %}" href="{% url 'loads:load.all' %}" role="button">
+=======
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none" href="{% url 'loads:load.all' %}" role="button">
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                             <i class="fas fa-boxes"></i><span class="ms-2" data-key="t-horizontal">Loads</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
+<<<<<<< HEAD
                         <a class="nav-link dropdown-toggle arrow-none {% if request.resolver_match.view_name == 'drivers:drivers.add' %} active {% endif %}" href="{% url 'drivers:drivers.all' %}" role="button">
+=======
+                        <a class="nav-link dropdown-toggle arrow-none" href="{% url 'drivers:drivers.all' %}" role="button">
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                             <i class="fas fa-address-card"></i><span class="ms-2" data-key="t-horizontal">Drivers</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown ">
+<<<<<<< HEAD
                         <a class="nav-link dropdown-toggle arrow-none {% if request.resolver_match.view_name == 'trailer:trailers.add' %} active {% endif %}" href="{% url 'trailer:trailers.all' %}" role="button">
+=======
+                        <a class="nav-link dropdown-toggle arrow-none" href="{% url 'trailer:trailers.all' %}" role="button">
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                             <i class="fas fa-trailer"></i><span class="ms-2" data-key="t-horizontal">Trailers</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
+<<<<<<< HEAD
                         <a class="nav-link dropdown-toggle arrow-none {% if request.resolver_match.view_name == 'trucks:trucks.add' %} active {% endif %}" href="{% url 'trucks:trucks.all' %}" role="button">
                             <i class="fas fa-truck-moving"></i><span class="ms-2" data-key="t-horizontal">Trucks</span>
                         </a>
                     </li>
                     {% endif %}
                     
+=======
+                        <a class="nav-link dropdown-toggle arrow-none" href="{% url 'trucks:trucks.all' %}" role="button">
+                            <i class="fas fa-truck-moving"></i><span class="ms-2" data-key="t-horizontal">Trucks</span>
+                        </a>
+                    </li>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                 </ul>
             </div>
         </nav>

@@ -27,6 +27,10 @@
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                 <h4 class="mb-sm-0 font-size-18">Add Trailers</h4>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
@@ -126,6 +130,16 @@
                                                             </div>
                                                         </div>
                                                     </div>
+<<<<<<< HEAD
+=======
+                                                    <div class="col-lg-9">
+                                                        <div class="mt-3 mt-lg-0">
+                                                            <div class="mb-3">
+                                                                {{trailer_files.files|as_crispy_field}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -246,6 +260,7 @@
 <!-- init js -->
 <script src="{% static 'js/pages/trailers/trailers-add.js'%}"></script>
 <script>
+<<<<<<< HEAD
 const inputs = document.querySelectorAll("input, select");
 for (const el of inputs){
   el.oldValue = el.value + el.checked;
@@ -266,5 +281,42 @@ var setEnabled;
 
 document.oninput = setEnabled;
 document.onchange = setEnabled;
+=======
+const inputs = document.querySelectorAll("input");
+const selects = document.querySelectorAll("select");
+function saveCurrent() {
+  for (const el of inputs) el.oldValue = el.value;
+}
+function saveCurrent2() {
+  for (const ol of selects) ol.oldValue = ol.value;
+}
+function setEnabled() {
+  var e = false;
+  for (const el of inputs) {
+    if (el.oldValue !== el.value) {
+      e = true;
+      break;
+    }
+  }
+  document.querySelector("#submit").disabled = !e;
+}
+function setEnabled2() {
+  var a = false;
+  for (const ol of selects) {
+    console.log(ol.oldValue, ol.value);
+    if (ol.oldValue !== ol.value) {
+      a = true;
+      break;
+    }
+  }
+  document.querySelector("#submit").disabled = !a;
+}
+document.addEventListener("input", setEnabled);
+document.addEventListener("select", setEnabled2);
+saveCurrent();
+saveCurrent2();
+setEnabled();
+setEnabled2();
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 </script>
 {% endblock extra_js %}

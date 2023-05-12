@@ -26,6 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "@lt67k=0j7eq1l*1alk7a42=p(b$v)juz@o!hmgl9mfcs9w#@4"
 
 # SECURITY WARNING: don't run with debug turned on in production!
+<<<<<<< HEAD
 # CSRF_COOKIE_SECURE = True
 # security.W012
 # SESSION_COOKIE_SECURE = True
@@ -50,6 +51,15 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+=======
+DEBUG = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE= True
+ALLOWED_HOSTS = ['192.168.1.150', '127.0.0.1']
+
+
+# Application definition
+
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 DEFAULT_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -109,6 +119,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+<<<<<<< HEAD
 # LOGGING = {
 #     'version': 1,
 #     'disable_existing_loggers': False,
@@ -136,6 +147,8 @@ MIDDLEWARE = [
 #         },
 #     },
 # }
+=======
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 ACCOUNT_ADAPTER = "allauth_2fa.adapter.OTPAdapter"
 
 ROOT_URLCONF = "dason.urls"
@@ -182,6 +195,7 @@ DATABASES = {
         'PORT' : '',
     }
 }
+<<<<<<< HEAD
 # LOGGING = {
 #     'version': 1,
 #     'handlers': {
@@ -198,6 +212,9 @@ DATABASES = {
 #         'handlers': ['console'],
 #     }
 # }
+=======
+
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -299,4 +316,8 @@ ACCOUNT_FORMS = {
     "reset_password_from_key": "dason.forms.UserResetPasswordKeyForm",
     "change_password": "dason.forms.UserChangePasswordForm",
     "set_password": "dason.forms.UserSetPasswordForm",
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d

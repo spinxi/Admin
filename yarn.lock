@@ -1098,9 +1098,15 @@ caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
   integrity sha512-Zb46wD9OWbQ82uZPOEGCr/FG0zFWMBBvgl/bcHOxSkhxEG4BwzXGqLbY7QHzSXg5d13lTh3Gpl3jPi8gvL3EIg==
 
 caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001286:
+<<<<<<< HEAD
   version "1.0.30001481"
   resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001481.tgz"
   integrity sha512-KCqHwRnaa1InZBtqXzP98LPg0ajCVujMKjqKDhZEthIpAsJl/YEIa3YvXjGXPVqzZVguccuu7ga9KOE1J9rKPQ==
+=======
+  version "1.0.30001427"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001427.tgz"
+  integrity sha512-lfXQ73oB9c8DP5Suxaszm+Ta2sr/4tf8+381GkIm1MLj/YdLf+rEDyDSRCzeltuyTVGm+/s18gdZ0q+Wmp8VsQ==
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 
 chalk@^1.0.0, chalk@^1.1.3:
   version "1.1.3"

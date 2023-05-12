@@ -23,7 +23,10 @@ from django.conf import settings
 
 app_name = "main"
 urlpatterns = [
+<<<<<<< HEAD
 
+=======
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
     path("admin/", admin.site.urls),
     # Dashboard
     path("", views.DashboardView.as_view(), name="dashboard"),

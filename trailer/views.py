@@ -45,7 +45,11 @@ def edit_trailer_view(request, id):
         f.updated_by = request.user
         f.save()
         for i in add_trailer_file:
+<<<<<<< HEAD
             TrailerFiles.objects.create(trailer_files=f, files=i)
+=======
+            TrailerFiles.objects.create(trailer_files=f, files=i+2)
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
         messages.success(request, "Trailer Has Been Edited Successfully!")
         return redirect('trailer:trailers.all')
     return render(request, 'trailers/trailers-add.html', {'trailer_form' : trailer_form, 'trailer_files':trailer_files})

@@ -6,10 +6,17 @@ RENT = ((0, 'No'), (1, 'Yes'))
 STATUS = ((0, 'active'), (1, 'Need Check'), (2, 'Inactive'))
 TRAILER_STATUS =  (('Owner-Operator', 'Owner-Operator'), ('GA', 'GA'), ('Self Dot', 'Self Dot'))
 GPS =  (('Azuga', 'Azuga'), ('Verizon', 'Verizon'))
+<<<<<<< HEAD
 # , fields=["plate_number"],
 @pghistory.track(pghistory.Snapshot(), exclude=["date_created", "date_edited", "created_by"], model_name="TrailerTracker")
 class Trailer(models.Model):
     #Trailer 30+30
+=======
+
+@pghistory.track(pghistory.Snapshot(), fields=["plate_number"], model_name="TrailerTracker")
+class Trailer(models.Model):
+    #Trailer
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
     trailer_status = models.CharField(choices=TRAILER_STATUS, max_length=50, default='Owner-Operator', null=True, blank=True)
     unit_number = models.CharField(max_length=50, default=None, null=True, blank=True)
     vin_number = models.CharField(default=None, max_length=50, null=True, blank=True)
@@ -30,7 +37,11 @@ class Trailer(models.Model):
     #Status
     rent = models.BooleanField(choices=RENT, default=0)
     status = models.IntegerField(choices=STATUS, default=0)
+<<<<<<< HEAD
     #Exclude- 
+=======
+    #Exclude-
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
     date_created = models.DateTimeField(auto_now_add=True)
     date_edited = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, null=True, blank=True, related_name='create_trailer')

@@ -46,12 +46,17 @@
                                             <div class="col-sm-6">
                                                 <div class="search-box me-2 mb-2 d-inline-block">
                                                     <div class="position-relative">
+<<<<<<< HEAD
                                                         <input type="text" id="custom-filter" class="rounded-1 form-control" placeholder="Search...">
+=======
+                                                        <input type="text" id="custom-filter" class="form-control" placeholder="Search...">
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                                         <i class="bx bx-search-alt search-icon"></i>
                                                     </div>
                                                 </div>
                                             </div><!-- end col-->
                                             <div class="col-sm-6">
+<<<<<<< HEAD
                                                 <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
                                                     <div>
                                                         <a href="{% url 'drivers:drivers.add' %}" class="btn btn-light"><i class="bx bx-plus me-1"></i> Add New</a>
@@ -72,6 +77,42 @@
                                             <thead>
                                             <tr>
 
+=======
+                                                <div class="text-sm-end">
+                                                    <a href="{% url 'drivers:drivers.add' %}"><button type="button" class="btn btn-success btn-rounded mb-2 me-2"><i class="mdi mdi-plus me-1"></i> Add New Order</button></a>
+                                                    <div class="btn-group ">
+                                                        <button type="button" class="btn btn-success dropdown-toggle btn-rounded mb-2 me-2" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-export-variant me-1"></i> Export Options <i class="mdi mdi-chevron-down"></i></button>
+                                                        <div class="dropdown-menu dropdownmenu-success" id="datatable_butt"></div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end col-->
+                                        </div><!-- End Datatable heading search & export & add -->
+                                        <!-- MODAL ASK -->
+                                        <div class="modal_ask_delete">
+                                            <!-- Static Backdrop Modal -->
+                                            <div class="modal fade" id="delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="staticBackdropLabel">Delete Driver</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Are you sure you want to delete driver <span class="text-danger" id="object-name"></span></p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                                            <a id="delete-object-a" href="#" type="button" class="btn btn-primary">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <MODAL ASK> -->
+                                        <table id="datatable-buttons" class="table table-hover dt-responsive nowrap w-100">
+                                            <thead class="table-dark">
+                                            <tr>
+                                                <th>#</th>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                                 <th>Driver Name</th>
                                                 <th>Phone</th>
                                                 
@@ -84,12 +125,18 @@
                                             <tbody>
                                                 {% for driver in driver_list %}
                                                 <tr>
+<<<<<<< HEAD
                                                     <td>{{driver.user.email}}</td>
+=======
+                                                    <td>{{forloop.counter}}</td>
+                                                    <td>{{driver.full_name}}</td>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                                     <td>{{driver.phone_number}}</td>
                                                     
                                                     <td>{{driver.driver_user.email}}</td>
                                                     <td>{{driver.date_created|date:"Y-m-d h:m:s"}}</td>
                                                     <td>
+<<<<<<< HEAD
                                                         ACTIVE
                                                     </td>
                                                     <td>
@@ -102,15 +149,30 @@
                                                                 <li><a class="dropdown-item" href="{% url 'drivers:drivers.edit' driver.driver_user_id %}">Edit</a></li>
                                                                 <li><a class="dropdown-item" href="{% url 'drivers:drivers.profile' driver.driver_user_id %}">Details</a></li>
                                                             </ul>
+=======
+                                                        {% if driver.status == 1 %}  
+                                                        <span class="badge rounded-pill badge-soft-success font-size-12 fw-medium">Active</span>
+                                                        {% else %} 
+                                                        <span class="badge rounded-pill badge-soft-danger font-size-12 fw-medium">Inactive</span>
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex gap-3">
+                                                            <a href="{% url 'drivers:drivers.edit' driver.driver_user_id %}" class="text-success"><i class="mdi mdi-pencil font-size-18"></i></a>
+                                                            <a href="{% url 'drivers:drivers.profile' driver.driver_user_id %}" class="text-danger"><i class="mdi mdi-eye-outline font-size-18"></i></a>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 {%endfor%}
                                             </tbody>
                                         </table>
+<<<<<<< HEAD
 
 
                                         
+=======
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                     </div>
                                 </div>
                                 <!-- end cardaa -->

@@ -1,4 +1,5 @@
 from django.contrib import admin
+<<<<<<< HEAD
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group
 
@@ -29,3 +30,7 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.unregister(Group)
+=======
+
+# Register your models here.
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d

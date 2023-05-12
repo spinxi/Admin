@@ -22,7 +22,11 @@
                         </div>
                     </div> profile-content  -->
 
+<<<<<<< HEAD
                     <!-- <div class="">
+=======
+                    <div class="">
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                         <div class="">
                             <div class="row">
                                 <div class="col-lg-4">
@@ -108,7 +112,11 @@
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                     </div> -->
+=======
+                    </div>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 
                     <div class="row">
                         <div class="col-lg-12">
@@ -118,9 +126,15 @@
                                         <li class="nav-item">
                                             <a class="nav-link px-3 active" data-bs-toggle="tab" href="#overview" role="tab">Overview</a>
                                         </li>
+<<<<<<< HEAD
                                         <!-- <li class="nav-item">
                                             <a class="nav-link px-3" data-bs-toggle="tab" href="#post" role="tab">Post</a>
                                         </li> -->
+=======
+                                        <li class="nav-item">
+                                            <a class="nav-link px-3" data-bs-toggle="tab" href="#post" role="tab">Post</a>
+                                        </li>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                     </ul>
                                 </div>
                             </div>
@@ -553,6 +567,7 @@
                         </div>
                         <!-- end col -->
                         <div class="col-xl-5 col-lg-5">
+<<<<<<< HEAD
                             <div class="card">
                                 <div class="card-header">
                                     <h5 class="card-title mb-0">Trailer Files</h5>
@@ -582,6 +597,8 @@
                                     </div>
                                 </div>
                             </div>
+=======
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 
                             <div class="card">
                                 <div class="card-header">
@@ -607,7 +624,11 @@
                                                 <tr>
                                                     <td><h6 class="font-size-12 m-0 text-dark">{{plates.plate_number}}</h6></td>
                                                     <td>{{plates.pgh_created_at|date:"Y/m/d, H:i"}}</td>
+<<<<<<< HEAD
                                                     <td><span class="badge rounded-pill badge-soft-danger font-size-11"><i class="mdi mdi-block-helper me-1"></i>Deleted</span></td>
+=======
+                                                    <td><span class="badge rounded-pill badge-soft-danger font-size-11"><i class="mdi mdi-block-helper me-1"></i>Expired</span></td>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                                 </tr>
                                                 {% endfor %}
                                             </tbody>
@@ -640,7 +661,11 @@
                                                 <tr>
                                                     <td><h6 class="font-size-12 m-0 text-dark">{{plates.updated_by}}</h6></td>
                                                     <td>{{plates.pgh_created_at|date:"Y/m/d, H:i"}}</td>
+<<<<<<< HEAD
                                                     <td><span class="badge rounded-pill badge-soft-danger font-size-11"><i class="mdi mdi-block-helper me-1"></i>Changed</span></td>
+=======
+                                                    <td><span class="badge rounded-pill badge-soft-danger font-size-11"><i class="mdi mdi-block-helper me-1"></i>Expired</span></td>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                                 </tr>
                                                 {% endfor %}
                                             </tbody>
@@ -649,15 +674,52 @@
                                 </div>
                             </div>
 
+<<<<<<< HEAD
 
                             <!-- <div class="card">
+=======
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Trailer Files</h5>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="table-responsive overflow-auto" style='height:300px'>
+                                        <table id="trailer_files"  class="table align-middle table-nowrap table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Create Date</th>
+                                                    <th>View</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for file in trailer_files %}
+                                                <tr>
+                                                    <td>{{ file.date_created_trailer_files|date:"Y/m/d, H:i" }} </td>
+                                                    <td>{{ file.files }} </td>
+                                                    <td><a href="{{ file.files.url }}" ><button type="button" class="btn btn-light btn-sm">View</button></a></td>
+                                                    <!-- <td><span class="badge rounded-pill badge-soft-danger font-size-11"><i class="mdi mdi-block-helper me-1"></i>Expired</span></td> -->
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                 <div class="card-header">
                                     <h5 class="card-title mb-0">Weekly Hours</h5>
                                 </div>
                                 <div class="card-body">
                                     <div id="overview-chart" data-colors='["#1c84ee"]' class="apex-charts" dir="ltr"></div>
                                 </div>
+<<<<<<< HEAD
                             </div> -->
+=======
+                            </div>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                             <!-- end card -->
                         </div>
                         <!-- end col -->
@@ -677,6 +739,7 @@
 {% endblock content %}
 
 {% block extra_js %}
+<<<<<<< HEAD
 <script>
     
     const names = document.querySelectorAll(".filenames");
@@ -692,6 +755,12 @@
     <!-- <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js'%}"></script>
 
     <script src="{% static 'js/pages/profile.init.js'%}"></script> -->
+=======
+    <!-- apexcharts -->
+    <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js'%}"></script>
+
+    <script src="{% static 'js/pages/profile.init.js'%}"></script>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 
     <!-- Datatables -->
     <script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>

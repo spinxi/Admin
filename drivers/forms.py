@@ -6,12 +6,17 @@ class DriverForm(forms.ModelForm):
     class Meta:
         model = Driver
         exclude = [
+<<<<<<< HEAD
             "driver_user"
+=======
+            'full_name',
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
         ]
         
 class DriverFormUpload(forms.ModelForm):
     class Meta:
         model = DriversFiles
+<<<<<<< HEAD
         exclude = [
             'driver_files',
         ]
@@ -27,4 +32,11 @@ class DriverFormUpload(forms.ModelForm):
             'occ_file': ClearableFileInput(attrs={'multiple': True,"class": "form-control",}),
             'license_file': ClearableFileInput(attrs={'multiple': True,"class": "form-control",}),
             'drug_test_file': ClearableFileInput(attrs={'multiple': True,"class": "form-control",}),
+=======
+        fields = [
+            'file',
+        ]
+        widgets = {
+            'file': ClearableFileInput(attrs={'multiple': True,"class": "form-control",}),
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
         }

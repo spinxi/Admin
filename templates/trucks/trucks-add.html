@@ -380,7 +380,11 @@
                                             </div>
                                         </div>
                                         <div class="d-flex flex-wrap gap-2">
+<<<<<<< HEAD
                                             <button id="submit" type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+=======
+                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                             <a href="{% url 'trucks:trucks.all' %}" class="btn btn-secondary waves-effect waves-light">Cancel</a>
                                         </div>
                                     </form>
@@ -403,10 +407,15 @@
         </div>
         <!-- end main content-->
 {% endblock content %}
+<<<<<<< HEAD
+=======
+31
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 {% block extra_js %}
 <script>
 const cbox = document.getElementById('id_state_inspection');
 const hid = document.getElementById('hid');
+<<<<<<< HEAD
 $(document).ready(function () {
     if (hid.checked == true) {
         hid.classList.remove('d-none');
@@ -444,6 +453,27 @@ $(document).ready(function () {
     document.oninput = setEnabled;
     document.onchange = setEnabled;
     </script>
+=======
+
+cbox.addEventListener('change', e => {
+  if (e.target.checked === true) {
+    hid.classList.remove('d-none');
+    console.log("Checkbox is checked - boolean value: ", e.target.checked)
+  } 
+  if (e.target.checked === false){
+    hid.classList.add('d-none');
+    console.log("Checkbox is checked - boolean value: ", e.target.checked)
+  }
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const cbox = document.getElementById('id_state_inspection');
+
+});
+
+      
+
+</script>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 <!-- choices js -->
 <script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js'%}"></script>
 <!-- datepicker js -->

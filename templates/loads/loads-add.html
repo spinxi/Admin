@@ -1,10 +1,14 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+<<<<<<< HEAD
 
 {% load custom_tags %}
 
 {% block title %}Add Loads{% endblock title %}
+=======
+{% block title %}Form Advanced Plugins{% endblock title %}
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 
 {% block extra_css %}
 
@@ -12,6 +16,7 @@
 <link href="{% static 'libs/choices.js/public/assets/styles/choices.min.css'%}" rel="stylesheet" type="text/css" />
 <!-- datepicker css -->
 <link rel="stylesheet" href="{% static 'libs/flatpickr/dist/flatpickr.min.css'%}">
+<<<<<<< HEAD
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css" type="text/css">
 <style>
@@ -46,11 +51,18 @@
     }
 
   </style>
+=======
+<!-- twitter-bootstrap-wizard css -->
+<link rel="stylesheet" href="{% static 'libs/twitter-bootstrap-wizard/prettify.css'%}">
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 
 {% endblock extra_css %}
 
 {% block content %}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
@@ -76,11 +88,16 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
 
+=======
+                    <!-- end page title -->
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
+<<<<<<< HEAD
 
                                     <form method="post" class="needs-validation" novalidate enctype="multipart/form-data">
                                         {% csrf_token %}
@@ -135,6 +152,164 @@
                                         <div class="d-flex flex-wrap gap-2 mb-5">
                                             <button id="submit" type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
                                         </div>
+=======
+                                    <form method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <!-- Wizard -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div id="progrss-wizard" class="twitter-bs-wizard">
+                                                    <ul class="twitter-bs-wizard-nav nav nav-pills nav-justified">
+                                                        <li class="nav-item">
+                                                            <a href="#load-info" class="nav-link" data-toggle="tab">
+                                                                <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Basic Information">
+                                                                    <i class="bx bxs-file"></i>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a href="#load-pickup" class="nav-link" data-toggle="tab">
+                                                                <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Pickup & Delivery Information">
+                                                                    <i class="bx bx-book-bookmark"></i>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <!-- wizard-nav -->
+                                                    <div id="bar" class="progress animated-progess my-4">
+                                                        <div class="progress-bar bg-success" role="progressbar"></div>
+                                                    </div>
+                                                    <div class="tab-content twitter-bs-wizard-tab-content">
+                                                        <div class="tab-pane" id="load-info">
+                                                            {% crispy formset %}
+                                                            <!-- formset.empty_form.load_drivers|as_crispy_field -->
+                                                            
+                                                            <div class="text-center mb-4">
+                                                                <h5>Load Basic Information</h5>
+                                                                <p class="card-title-desc">Fill all information below</p>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.bill_to|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.rate|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.driver|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.truck|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.trailer|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.po_number|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_file_form.files|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.load_status|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-12">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.notes|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                                <li class="next">
+                                                                    <a href="javascript: void(0);" class="btn btn-primary">
+                                                                        Next <i class="bx bx-chevron-right ms-1"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="tab-pane" id="load-pickup">
+                                                            <div class="text-center mb-4">
+                                                                <h5>Load Pickup & Delivery Information</h5>
+                                                                <p class="card-title-desc">Fill all information below</p>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.pickup_location|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.pickup_date|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.pickup_time|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <hr class="my-5">
+                                                            <div class="row">
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.delivery_location|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.delivery_date|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                    <div class="mb-3">
+                                                                        {{load_form.delivery_time|as_crispy_field}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <ul class="pager wizard twitter-bs-wizard-pager-link">
+                                                                <li class="previous">
+                                                                    <a href="javascript: void(0);" class="btn btn-primary">
+                                                                        <i class="bx bx-chevron-left me-1"></i> Previous
+                                                                    </a>
+                                                                </li>
+                                                                <li class="float-end">
+                                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end col -->
+                                        </div>
+                                        <!-- End Wizard -->
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
                                     </form>
                                 </div>
                                 <!-- end card body -->
@@ -157,7 +332,10 @@
 {% endblock content %}
 
 {% block extra_js %}
+<<<<<<< HEAD
 <script src="{% static 'libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js'%}"></script>
+=======
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 <!-- choices js -->
 <script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js'%}"></script>
 <!-- datepicker js -->
@@ -166,6 +344,7 @@
 <script src="{% static 'js/pages/form-validation.init.js'%}"></script>
 <!-- init js -->
 <script src="{% static 'js/pages/loads/add.js'%}"></script>
+<<<<<<< HEAD
 <script>
 
     const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZXJub3JlIiwiYSI6ImNsZ2Y1bXR3ODAxNjcza2xjd2h3b2k5ZmEifQ.18V-Hc5DTZpLgjWHTyhLfQ';
@@ -594,4 +773,11 @@ $("#delivery-formset").formset({
     formCssClass: "pickup-form",
 });
 </script>
+=======
+<!-- twitter-bootstrap-wizard js -->
+<script src="/static/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<script src="/static/libs/twitter-bootstrap-wizard/prettify.js"></script>
+<!-- form wizard init -->
+<script src="{% static 'js/pages/form-wizard.init.js'%}"></script>
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
 {% endblock extra_js %}

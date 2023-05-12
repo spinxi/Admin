@@ -1,6 +1,7 @@
 from django.contrib import admin
 # from .models import DriversFiles
 # # Register your models here.
+<<<<<<< HEAD
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -26,3 +27,7 @@ class LogEntryAdmin(admin.ModelAdmin):
         self.list_display_links = None
 
 admin.site.register(admin.models.LogEntry, LogEntryAdmin)
+=======
+# admin.site.register(DriversFiles)
+
+>>>>>>> 588876d0dc8d4fce8bd7cad04e372aa75d08343d
