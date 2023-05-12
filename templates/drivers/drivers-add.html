@@ -1,0 +1,728 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Add Driver{% endblock title %}
+
+{% block extra_css %}
+
+<!-- choices css -->
+<link href="{% static 'libs/choices.js/public/assets/styles/choices.min.css'%}" rel="stylesheet" type="text/css" />
+<!-- datepicker css -->
+<link rel="stylesheet" href="{% static 'libs/flatpickr/dist/flatpickr.min.css'%}">
+<!-- dropzone css -->
+<link href="{% static 'libs/dropzone/dist/min/dropzone.min.css'%}" rel="stylesheet" type="text/css" />
+{% endblock extra_css %}
+
+{% block content %}
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <h4 class="mb-sm-0 font-size-18">Add drivers</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                                        <li class="breadcrumb-item"><a href="{% url 'drivers:drivers.all' %}">Drivers</a></li>
+                                        <li class="breadcrumb-item active">Add drivers</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+                    <form method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Basic</h4>
+                                        <p class="card-title-desc">Basic Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.full_name|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_custom_user.email|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.birth_date|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.current_address|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.phone_number|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.driver_status|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">License</h4>
+                                        <p class="card-title-desc">License Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.license_number|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.license_state|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.license_address|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.license_class|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.license_issue|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.license_exp_date|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver_files.license_file|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Drug Test</h4>
+                                        <p class="card-title-desc">Drug Test Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.last_drug_test|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.drug_test_status|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.drug_test_result|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver_files.drug_test_file|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">OCC</h4>
+                                        <p class="card-title-desc">OCC Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.occ_member_number|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.occ_start_date|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.occ_cancel_date|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver_files.occ_file|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->   
+    
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Medical Certificate</h4>
+                                        <p class="card-title-desc">Medical Certificate Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.med_cert_exp_date|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.med_verification|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver_files.medical_file|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Clearing House</h4>
+                                        <p class="card-title-desc">Clearing House Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.clearing_house_date|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">PSP</h4>
+                                        <p class="card-title-desc">PSP Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.psp|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">MVR</h4>
+                                        <p class="card-title-desc">MVR Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.mvr_status|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.last_mvr|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver_files.mvr_file|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Contract</h4>
+                                        <p class="card-title-desc">Contract Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.contract_sign_date|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver_files.contract_file|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Application</h4>
+                                        <p class="card-title-desc">Application Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.application_fill_date|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver_files.application_file|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">PEV</h4>
+                                        <p class="card-title-desc">PEV Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.pev_first_send|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.pev_second_send|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.pev_receive_date|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver_files.pev_file|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">W9</h4>
+                                        <p class="card-title-desc">W9 Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.w9|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.w9_company_name|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.w9_company_ein|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.w9_company_address|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.w9_federal_classificaton|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver_files.w9_file|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Bank Information</h4>
+                                        <p class="card-title-desc">Bank Information Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.bank_holder_name|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.bank_holder_address|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.bank_city|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.bank_state|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.bank_zip_code|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.bank_name|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.bank_routing_number|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.bank_account_number|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.bank_personal_checking|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.bank_business_checking|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.bank_personal_saving|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver_files.bank_file|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Safety Deposit</h4>
+                                        <p class="card-title-desc">Safety Deposit Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.safety_received_date|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.safety_received_amount|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.safety_return_date|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.safety_returned_amount|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.safety_charge_date|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.safety_charge_amount|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.safety_charge_reason|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+
+
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Beneficiary Information</h4>
+                                        <p class="card-title-desc">Beneficiary Information Details</p>
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.ben_full_name|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.ben_address|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver.ben_relation|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="mt-3 mt-lg-0">
+                                                <div class="mb-3">
+                                                    {{add_driver_files.ben_file|as_crispy_field}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                            <div class="d-flex flex-wrap gap-2 mb-5">
+                                <button id="submit" type="submit" class="btn btn-primary waves-effect waves-light">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- end row -->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            {% block footer %}
+            {% include 'partials/footer.html' %}
+            {% endblock footer %}
+        </div>
+        <!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- dropzone js -->
+<script src="{% static 'libs/dropzone/dist/min/dropzone.min.js'%}"></script>
+<!-- choices js -->
+<script src="{% static 'libs/choices.js/public/assets/scripts/choices.min.js'%}"></script>
+<!-- datepicker js -->
+<script src="{% static 'libs/flatpickr/dist/flatpickr.min.js'%}"></script>
+<!-- form validation -->
+<script src="{% static 'js/pages/form-validation.init.js'%}"></script>
+<!-- init js -->
+<script src="{% static 'js/pages/drivers/drivers-add.js'%}"></script>
+{% endblock extra_js %}

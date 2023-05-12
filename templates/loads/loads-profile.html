@@ -1,0 +1,335 @@
+{% extends 'partials/base.html' %}
+
+{% load static %}
+{% block title %}Profile{% endblock title %}
+{% block content %}
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- <div class="row">
+                        <div class="col-xl-12">
+                            <div class="profile-user"></div>
+                        </div>
+                    </div> profile-content  -->
+
+
+                    <div class="row my-5">
+                      <div class="col-xl-12">
+
+                          <div class="row">
+                              <div class="col-xl-2">
+                                  <div class="nav flex-column nav-pills pricing-tab-box" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                      <a class="nav-link box-shadow mb-3 active" id="v-pills-tab-two" data-bs-toggle="pill" href="#v-price-two" role="tab" aria-controls="v-price-two" aria-selected="true">
+                                          <div class="d-flex justify-content-center">
+                                            <b class="fw-medium font-size-15">INFORMATION</b>
+                                          </div>
+                                      </a>
+                                      <a class="nav-link box-shadow " id="v-pills-tab-three" data-bs-toggle="pill" href="#v-price-three" role="tab" aria-controls="v-price-three" aria-selected="false">
+                                          <div class="d-flex justify-content-center">
+                                            <b class="fw-medium font-size-15 ">LOCATION</b>
+                                          </div>
+                                      </a>
+                                  </div>
+                              </div>
+
+                              <div class="col-xl-10">
+                                  <div class="tab-content text-muted mt-4 mt-xl-0" id="v-pills-tabContent">
+                                      <div class="tab-pane fade active show" id="v-price-two" role="tabpanel" aria-labelledby="v-pills-tab-two">
+                                          <div class="table-responsive pricing-table-bg">
+                                            
+                                              <table class="table table-bordered mb-0 table-centered align-middle table-hover">
+                                                  <tbody>
+                                                      <tr>
+                                                          <td><h5 class="font-size-12 m-0">P.O #</h5></td>
+                                                          <td>{{load.po_number}}</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td><h5 class="font-size-12 m-0">Bill to</h5></td>
+                                                          <td>{{load.bill_to}}</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td><h5 class="font-size-12 m-0">Rate</h5></td>
+                                                          <td>${{load.rate}}</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td><h5 class="font-size-12 m-0">Truck</h5></td>
+                                                          <td>{{load.truck}}</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td><h5 class="font-size-12 m-0">Trailer</h5></td>
+                                                          <td>{{load.trailer}}</td>
+                                                      </tr>
+                                                      <tr>
+                                                        <td><h5 class="font-size-12 m-0">Created By</h5></td>
+                                                        <td><i class="mdi mdi-calendar me-2 text-primary"></i>{{load.created_by}}</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td><h5 class="font-size-12 m-0">Create Date</h5></td>
+                                                          <td><i class="mdi mdi-calendar me-2 text-primary"></i>{{load.date_created|date:"Y/m/d, H:m:i"}}</td>
+                                                      </tr>
+                                                      <tr>
+                                                          <td><h5 class="font-size-12 m-0">Updated By</h5></td>
+                                                          {% if load.updated_by %}
+                                                          <td><i class="mdi mdi-calendar me-2 text-primary"></i>{{load.updated_by}}</td>
+                                                          {% else %}
+                                                          <td>No Updates</td>
+                                                          {% endif %}
+                                                      </tr>
+                                                      <tr>
+                                                        <td><h5 class="font-size-12 m-0">Schedule</h5></td>
+                                                        {% if is_late %}
+                                                        <td>This load is late by {{ time_difference.days }} day(s) and {{ time_difference.hours }} hour(s)</td>
+                                                        {% else %}
+                                                        <td>This load is on time</td>
+                                                        {% endif %}
+
+                                                    </tr>
+                                                      
+                                                      <tr>
+                                                          <td><h5 class="font-size-12 m-0">Edited Date</h5></td>
+                                                          {% if load.date_edited %}
+                                                          <td><i class="mdi mdi-calendar me-2 text-primary"></i>{{load.date_edited|date:"Y/m/d, H:m:i"}}</td>
+                                                          {% else %}
+                                                          <td>No edits</td>
+                                                          {% endif %}
+                                                      </tr>
+                                                      <tr>
+                                                          <td><h5 class="font-size-12 m-0">Status</h5></td>
+                                                          <td>{{load.load_status}}</td>
+                                                      </tr>
+                                                  </tbody>
+                                              </table>
+                                          </div>
+                                      </div>
+                                      <div class="tab-pane fade pricing-table-bg p-4" id="v-price-three" role="tabpanel" aria-labelledby="v-pills-tab-three">
+                                            <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+                                            <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+
+
+                                            
+                                            <div class="position-relative m-4">
+                                              <div class="progress" style="height: 5px;">
+                                                  <div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                              </div>
+                                              <div type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 1rem; height:1rem;"></div>
+                                              <div type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 1rem; height:1rem;"></div>
+                                              <div type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-primary rounded-pill" style="width: 1rem; height:1rem;"></div>
+                                            </div>
+                                            <div>
+                                              <p>{{ load.starting_address}}</p>
+                                              {% for pickup in pickups %}
+                                                  <p>{{ pickup.pickup_location }}</p>
+                                              {% endfor %}
+                                              {% for delivery in deliveries %}
+                                                  <p>{{ delivery.delivery_location }}</p>
+                                              {% endfor %}
+                                            </div>
+                                            <style>
+                                              #sidebar {
+                                                background-color: #0e2127!important;
+                                                position: absolute;
+                                                top: 10px;
+                                                left: 10px;
+                                                padding: 10px;
+                                                max-width: 300px;
+                                                border-radius: 5px;
+                                                z-index: 1;
+                                              }
+                                            
+                                              #map {
+                                                height: 400px;
+                                              }
+                                              #totalDistance{
+                                                color: white;
+                                              }
+                                              #totalDuration{
+                                                color: white;
+                                              }
+                                            </style>
+                                            <div style="position: relative;">
+                                              <div id="map" style="width: 100%; height: 600px;"></div>
+                                              <!-- SIDEBAR -->
+                                              <div id="sidebar">
+                                                <div id="card">
+                                                  <p id="totalDistance"></p>
+                                                  <p id="totalDuration"></p>
+                                                  <p id="deadHead"></p>
+                                                </div>
+                                                
+                                                <!-- <h3>Steps</h3> -->
+                                                <ol id="stepsList"></ol>
+                                              </div>
+                                            </div>
+                                            
+
+                                            
+
+                                            <div class="d-none">
+                                              <p id="starting">{{ load.coordinates_starting}}</p>
+                                              {% for pickup in pickups %}
+                                                  <p class="pickup">{{ pickup.coordinates_pickup }}</p>
+                                              {% endfor %}
+                                              {% for delivery in deliveries %}
+                                                  <p class="delivery">{{ delivery.coordinates_delivery }}</p>
+                                              {% endfor %}
+                                            </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- end col -->
+                  </div>
+
+
+                  <script>
+                    document.getElementById('v-pills-tab-three').addEventListener('shown.bs.tab', function () {
+                      if (!document.getElementById('map').hasAttribute('data-map-loaded')) {
+                        // Load the map
+                        loadMap();
+                      }
+                      });
+
+                      function loadMap() {
+                        const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZXJub3JlIiwiYSI6ImNsZ2Y1bXR3ODAxNjcza2xjd2h3b2k5ZmEifQ.18V-Hc5DTZpLgjWHTyhLfQ';
+
+                        const startingCoordinates = document.getElementById("starting").textContent;
+                        const startingCoordsObj = JSON.parse(startingCoordinates.replace(/'/g, '"'));
+                        const startingCoords = [startingCoordsObj.longitude, startingCoordsObj.latitude];
+
+                        const pickupLocations = document.querySelectorAll(".pickup");
+                        const pickupCoords = [];
+                        pickupLocations.forEach(function(location) {
+                          const locationCoordsObj = JSON.parse(location.textContent.replace(/'/g, '"'));
+                          const locationCoords = [locationCoordsObj.longitude, locationCoordsObj.latitude];
+                          pickupCoords.push(locationCoords);
+                        });
+
+                        const deliveryLocations = document.querySelectorAll(".delivery");
+                        const deliveryCoords = [];
+                        deliveryLocations.forEach(function(location) {
+                          const locationCoordsObj = JSON.parse(location.textContent.replace(/'/g, '"'));
+                          const locationCoords = [locationCoordsObj.longitude, locationCoordsObj.latitude];
+                          deliveryCoords.push(locationCoords);
+                        });
+
+                        const locations = [startingCoords, ...pickupCoords, ...deliveryCoords];
+                        const url = `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${locations.map(location => location.join(',')).join(';')}?alternatives=true&geometries=geojson&language=en&overview=simplified&steps=true&access_token=${MAPBOX_ACCESS_TOKEN}`;
+
+
+                        fetch(url)
+                          .then(response => response.json())
+                          .then(data => {
+                            mapboxgl.accessToken = 'pk.eyJ1IjoiZXJub3JlIiwiYSI6ImNsZ2Y1bXR3ODAxNjcza2xjd2h3b2k5ZmEifQ.18V-Hc5DTZpLgjWHTyhLfQ';
+                            const map = new mapboxgl.Map({
+                              container: 'map',
+                              style: 'mapbox://styles/mapbox/streets-v11',
+                              center: [-98.5795, 39.8283], // default center of the US
+                              zoom: 3 // default zoom level
+                            });
+
+                            // The distance between the first and second locations is in data.distances[0][1]
+                            // The distance between the first and third locations is in data.distances[0][2]
+                            // The distance between the second and third locations is in data.distances[1][2]
+                            
+                            console.log(data);
+
+                           
+                            
+                            // Process the response data
+                            const route = data.routes[0];
+                            const steps = route.legs.flatMap(leg => leg.steps);
+                            // Convert the distance to miles
+                            const distanceInMiles = route.distance * 0.0006213712; // Conversion factor from meters to miles
+
+                            // Format the distance
+                            const formattedDistance = distanceInMiles.toFixed(2);
+                            // Update the sidebar with the response data
+                            document.getElementById('totalDistance').textContent = `Total Distance: ${formattedDistance} Miles`;
+                            document.getElementById('totalDuration').textContent = `Total Duration: ${formatDuration(route.duration)} seconds`;
+                            // const stepsList = document.getElementById('stepsList');
+                            // stepsList.innerHTML = steps.map(step => `<li>${step.maneuver.instruction}</li>`).join('');
+
+
+                            function formatDuration(durationInSeconds) {
+                              const hours = Math.floor(durationInSeconds / 3600);
+                              const minutes = Math.floor((durationInSeconds % 3600) / 60);
+                              const seconds = Math.floor(durationInSeconds % 60);
+
+                              const formattedDuration = [];
+                              if (hours > 0) {
+                                formattedDuration.push(hours === 1 ? '1 hour' : `${hours} hours`);
+                              }
+                              if (minutes > 0) {
+                                formattedDuration.push(minutes === 1 ? '1 minute' : `${minutes} minutes`);
+                              }
+                              if (seconds > 0) {
+                                formattedDuration.push(seconds === 1 ? '1 second' : `${seconds} seconds`);
+                              }
+
+                              return formattedDuration.join(', ');
+                            }
+
+                            const routes = data.routes[0].geometry;
+                            map.on('load', function() {
+                              locations.forEach(location => {
+                                const marker = new mapboxgl.Marker({
+                                  'color': '#448ee4'
+                                });
+                                marker.setLngLat(location).addTo(map);
+                              });
+                              map.addLayer({
+                                id: 'route',
+                                type: 'line',
+                                source: {
+                                  type: 'geojson',
+                                  data: {
+                                    type: 'Feature',
+                                    properties: {},
+                                    geometry: routes
+                                  }
+                                },
+                                layout: {
+                                  'line-join': 'round',
+                                  'line-cap': 'round'
+                                },
+                                paint: {
+                                  'line-color': '#74abea',
+                                  'line-width': 8
+                                }
+                              });
+                            });
+
+                          })
+                          .catch(error => console.error(error));
+                          document.getElementById('map').setAttribute('data-map-loaded', 'true');
+                        }
+                  </script>
+                                
+                            
+
+                    <!-- end row -->
+                    
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+            
+        {% block footer %}
+            {% include 'partials/footer.html' %}
+        {% endblock footer %}
+        </div>
+        <!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+    <!-- apexcharts -->
+    <!-- <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js'%}"></script>
+
+    <script src="{% static 'js/pages/profile.init.js'%}"></script> -->
+{% endblock extra_js %}

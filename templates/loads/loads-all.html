@@ -1,0 +1,326 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block title %}Loads{% endblock title %}
+{% block extra_css %}
+    <!-- DataTables -->
+    <link href="{% static 'libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" />
+    <!-- alertifyjs Css -->
+    <link href="{% static 'libs/alertifyjs/build/css/alertify.min.css'%}" rel="stylesheet" type="text/css" />
+
+    <!-- alertifyjs default themes  Css -->
+    <link href="{% static 'libs/alertifyjs/build/css/themes/default.min.css'%}" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css'%}" rel="stylesheet" type="text/css" /> 
+{% endblock extra_css %}
+
+{% block content %}
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+            
+                <!-- Modal -->
+                <div class="modal fade" id="composemodal" tabindex="-1" role="dialog" aria-labelledby="composemodalTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title font-size-16" id="composemodalTitle">New Message</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control" placeholder="To">
+                                    </div>
+            
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Subject">
+                                    </div>
+                                    <!-- <div class="mb-3 email-editor">
+                                        <div id="email-editor"></div>
+                                    </div> -->
+            
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Send <i
+                                        class="fab fa-telegram-plane ms-1"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal -->
+
+
+                <!-- right offcanvas -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <h5 id="offcanvasRightLabel">BIG NEWS</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        COMING SOON<br>
+                           . . . 
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Loads List</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                                            <li class="breadcrumb-item active">Loads</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- MODAL ASK -->
+                        <div class="modal_notes">
+                            <div class="modal fade" id="delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">Delete </h5>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to delete Truck <span class="text-danger" id="object-name"></span></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                            <a id="delete-object-a" href="#" type="button" class="btn btn-primary">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <MODAL ASK> -->
+                        <!-- right offcanvas -->
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                            <div class="offcanvas-header">
+                                <h5 id="offcanvasRightLabel">BIG NEWS</h5>
+                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                COMING SOON<br>
+                                   . . . 
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <div class="search-box me-2 mb-2 d-inline-block">
+                                    <div class="position-relative">
+                                        <input type="text" id="custom-filter" class="rounded-1 form-control" placeholder="Search...">
+                                        <i class="bx bx-search-alt search-icon"></i>
+                                    </div>
+                                </div>
+                            </div><!-- end col-->
+                            <div class="col-sm-6">
+                                <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+                                    <div>
+                                        <a href="{% url 'loads:load.add' %}" class="btn btn-light"><i class="bx bx-plus me-1"></i> Add New</a>
+                                    </div>
+                                    <div class="dropdown">
+                                        <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bx bx-dots-horizontal-rounded"></i>
+                                        </a>
+                                        <ul id="datatable_butt" class="dropdown-menu dropdown-menu-end dropdownmenu-success">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!-- end col-->
+                        </div>
+                        <div class="row"><!-- Datatable -->
+                            <div class="col-12">
+                                        {% for load in page_obj %}
+                                        <div class="card" style="border-left: 10px solid #34c38f!important;">
+                                            <div class="card-body" >
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="">
+                                                        <p class="card-title text-danger fw-semibold">{{load.po_number}} </p>
+                                                        
+                                                        <div class="btn btn-success btn-sm waves-effect waves-light">
+                                                            <i class="fas fa-circle me-2"></i> {{load.load_status}} 
+                                                        </div>
+                                                    </div>
+                                                    <div class="">
+                                                        {% if load.created_by.groups.exists %}
+                                                        {% for group in load.created_by.groups.all %}
+                                                        TEAM: {{ group.name }}
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        No groups found
+                                                    {% endif %} 
+                                                        <h1 class="card-title fw-semibold">Load</h1>
+                                                        <p class="card-title-desc ">{{load.bill_to}}</p>
+                                                        <p class="card-title-desc "><i class="fas fa-dollar-sign"></i>{{load.rate}}</p>
+                                                        <p class="card-title-desc ">{{load.notes|safe}}</p>
+                                                    </div>
+                                                    <div class="">
+                                                        <h1 class="card-title fw-semibold">Pickup</h1>
+                                                        {% for pickup in load.loadpickup.all %}
+                                                            <p class="card-title-desc">{{pickup.pickup_location}}</p>
+                                                            <p class="card-title-desc ">
+                                                                <span class="badge bg-primary">{{pickup.pickup_date_from|date:"Y/m/d H:m:i"}}</span> 
+                                                                - 
+                                                                <span class="badge bg-primary">{{pickup.pickup_date_to|date:"Y/m/d H:m:i"}}</span>
+                                                            </p>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div class="">
+                                                        <h1 class="card-title fw-semibold">Delivery</h1>
+                                                        {% for delivery in load.loaddelivery.all %}
+                                                            <p class="card-title-desc ">{{delivery.delivery_location}}</p>
+                                                            <p class="card-title-desc ">
+                                                                <span class="badge bg-primary">{{delivery.delivery_date_from|date:"Y/m/d H:m:i"}}</span> 
+                                                                - 
+                                                                <span class="badge bg-primary">{{delivery.delivery_date_to|date:"Y/m/d H:m:i"}}</span>
+                                                            </p>
+                                                        {% endfor %}
+
+                                                        
+                                                       
+                                                        
+                                                    </div>
+                                                    <div class="">
+                                                        <table class="table table-sm m-0 w-auto">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>
+                                                                    
+                                                                        {% for load_driver in load.loaddrivers.all %}
+
+                                                                            {% for driver in load_driver.load_driver_user.all %}
+
+                                                                            <span class="badge bg-success"><i class="fas fa-user me-2"></i>{{driver.email}}</span>
+                                                                                {% empty %}
+                                                                                <span class="badge bg-success"><i class="fas fa-user me-2"></i>No drivers</span>
+                                                                            {% endfor %}
+
+                                                                        {% endfor %}
+                                                                    </th>
+                                                                    
+                                                                    <!-- <th class="text-danger">not started</th> -->
+                                                                </tr>
+                                                                <tr>
+                                                                    <th><i class="fas fa-truck me-2"></i>{{load.truck}}</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><i class="fas fa-trailer me-2"></i>{{load.trailer}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="card-footer bg-transparent border-top text-muted py-1">
+                                                <div class="d-flex ">
+                                                    <div class="pe-2">
+                                                        Files:
+                                                    </div>
+                                                    <div class="pe-2">
+                                                        sdsd
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        {%endfor%}
+                                        <!-- Pagination links -->
+                                        <ul class="pagination pagination-rounded justify-content-end mb-2">
+                                            {% if page_obj.has_previous %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                                    <i class="mdi mdi-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            {% else %}
+                                            <li class="page-item disabled">
+                                                <span class="page-link" aria-label="Previous">
+                                                    <i class="mdi mdi-chevron-left"></i>
+                                                </span>
+                                            </li>
+                                            {% endif %}
+                                            <li class="page-item active"><span class="page-link">{{ page_obj.number }}</span></li>
+
+                                            {% if page_obj.has_next %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                                    <i class="mdi mdi-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                            {% else %}
+                                            <li class="page-item disabled">
+                                                <span class="page-link" aria-label="Next">
+                                                    <i class="mdi mdi-chevron-right"></i>
+                                                </span>
+                                            </li>
+                                            {% endif %}
+
+                                        </ul>
+
+                                        
+                                        
+                                    </div>
+                                </div>
+                                <!-- end cardaa -->
+                            </div> <!-- end col -->
+                        </div> <!-- end row Datatable -->
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                {% block footer %}
+                {% include 'partials/footer.html' %}
+                {% endblock footer %}
+            </div>
+            <!-- end main content-->
+{% endblock content %}
+
+{% block extra_js %}
+<!-- Required datatable js -->
+<script src="{% static 'libs/datatables.net/js/jquery.dataTables.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js'%}"></script>
+<!-- Buttons examples -->
+<script src="{% static 'libs/datatables.net-buttons/js/dataTables.buttons.min.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js'%}"></script>
+<script src="{% static 'libs/jszip/dist/jszip.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/pdfmake.min.js'%}"></script>
+<script src="{% static 'libs/pdfmake/build/vfs_fonts.js'%}"></script>
+<script src="{% static 'libs/datatables.net-buttons/js/buttons.html5.min.js'%}"></script>
+<!-- <script src="{% static 'libs/datatables.net-buttons/js/buttons.print.min.js'%}"></script> -->
+<!-- <script src="{% static 'libs/datatables.net-buttons/js/buttons.colVis.min.js'%}"></script> -->
+<!-- alertifyjs js -->
+
+<script src="{% static 'libs/alertifyjs/build/alertify.min.js'%}" data-settings-url="{% url 'settings' %}"></script>
+<!-- notification init -->
+<!-- <script src="{% static 'js/pages/notification.init.js'%}"></script> -->
+<!-- Responsive examples -->
+<script src="{% static 'libs/datatables.net-responsive/js/dataTables.responsive.min.js'%}"></script>
+<!-- Datatable init js -->
+<script src="{% static 'js/pages/loads/datatables.js'%}"></script>    
+{% endblock extra_js %}
